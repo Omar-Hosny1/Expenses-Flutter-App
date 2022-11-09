@@ -183,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
             body: pageBody,
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
-            floatingActionButton: !Platform.isAndroid
+            floatingActionButton: Platform.isAndroid
                 ? FloatingActionButton(
                     child: Icon(Icons.add),
                     onPressed: () => _startAddANewTransaction(context),
