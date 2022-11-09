@@ -44,54 +44,61 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        padding: EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            TextField(
-              decoration: InputDecoration(labelText: 'Title'),
-              controller: _titleController,
-              onSubmitted: (_) => _submitData(),
-              // onChanged: (val) => this.titleInput = val,
-            ),
-            TextField(
-              decoration: InputDecoration(labelText: 'Amount'),
-              keyboardType: TextInputType.number,
-              controller: _amountController,
-              onSubmitted: (_) => _submitData(),
-              // onChanged: (val) => this.amountInput = val,
-            ),
-            Container(
-              height: 70,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    _selectedDate == null
-                        ? 'No Date Choosen!'
-                        : "Picked Date : ${DateFormat.yMd().format(
-                            _selectedDate,
-                          )}",
-                  ),
-                  TextButton(
-                      onPressed: _presentDatePicked,
-                      child: Text(
-                        'Choose Date',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ))
-                ],
+    final mediaQuery = MediaQuery.of(context);
+    return SingleChildScrollView(
+      child: Card(
+        child: Container(
+          padding: EdgeInsets.only(
+              top: 10,
+              right: 10,
+              left: 10,
+              bottom: mediaQuery.viewInsets.bottom + 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              TextField(
+                decoration: InputDecoration(labelText: 'Title'),
+                controller: _titleController,
+                onSubmitted: (_) => _submitData(),
+                // onChanged: (val) => this.titleInput = val,
               ),
-            ),
-            ElevatedButton(
-                onPressed: _submitData,
-                child: Text(
-                  'Add Transaction',
-                ))
-          ],
+              TextField(
+                decoration: InputDecoration(labelText: 'Amount'),
+                keyboardType: TextInputType.number,
+                controller: _amountController,
+                onSubmitted: (_) => _submitData(),
+                // onChanged: (val) => this.amountInput = val,
+              ),
+              Container(
+                height: 70,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      _selectedDate == null
+                          ? 'No Date Choosen!'
+                          : "Picked Date : ${DateFormat.yMd().format(
+                              _selectedDate,
+                            )}",
+                    ),
+                    TextButton(
+                        onPressed: _presentDatePicked,
+                        child: Text(
+                          'Choose Date',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ))
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                  onPressed: _submitData,
+                  child: Text(
+                    'Add Transaction',
+                  ))
+            ],
+          ),
         ),
       ),
     );
